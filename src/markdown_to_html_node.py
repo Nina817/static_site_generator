@@ -5,13 +5,17 @@ from text_node_to_html_node import text_node_to_html_node
 
 def text_to_children(text):
     text_nodes = text_to_textnodes(text)
-    return [text_node_to_html_node(text_node) for text_node in text_nodes]
+    html_nodes = [text_node_to_html_node(text_node) for text_node in text_nodes]
+    for node in html_nodes:
+        if not node.value:
+            print(node)
+    return html_nodes
 
 def list_to_list_nodes(block):
     list_nodes = []
     list_items = [item.split(' ', 1)[1] for item in block.split('\n')]
     for text in list_items:
-            list_nodes.append(ParentNode('li', text_to_children(text)))
+        list_nodes.append(ParentNode('li', text_to_children(text)))
     return list_nodes
 
 def block_to_HTMLNode(block):

@@ -1,4 +1,5 @@
 from textnode import TextNode, TextType
+from extract_title import generate_page, generate_pages_recursive
 import os
 import shutil
 
@@ -34,5 +35,7 @@ def main():
     # print(obj)
     delete_dest()
     source_to_dest('static', 'public/')
+    # generate_page('content/index.md', 'template.html', 'public/index.html')
+    generate_pages_recursive('content', 'template.html', 'public')
 
 main()

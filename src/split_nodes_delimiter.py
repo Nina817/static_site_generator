@@ -14,12 +14,13 @@ def split_nodes_delimiter(old_nodes:list, delimiter, text_type:TextType):
             else:
                 for i in range(len(value_list)):
                     text = value_list[i]
-                    if i == len(value_list)-1 and not text and j==len(old_nodes)-1:
-                        continue
-                    if i%2 !=0: # if is inline text e.g. code block
-                        result.append(TextNode(text, text_type))
-                    else:
-                        result.append(TextNode(text, TextType.TEXT))
+                    if text:
+                        if i == len(value_list)-1 and not text and j==len(old_nodes)-1:
+                            continue
+                        if i%2 !=0: # if is inline text e.g. code block
+                            result.append(TextNode(text, text_type))
+                        else:
+                            result.append(TextNode(text, TextType.TEXT))
     return result
 
 def extract_markdown_images(text):

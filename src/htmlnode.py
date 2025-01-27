@@ -21,7 +21,9 @@ class HTMLNode:
         return self.tag == other.tag and self.value== other.value and self.children==other.children and self.props==other.props
 
     def __repr__(self):
-        return f"tag: {self.tag}\nvalue: {self.value}\nchildren: {self.children}\nprops: {self.props}"
+        # return f"tag: {self.tag}\nvalue: {self.value}\nchildren: {self.children}\nprops: {self.props}"
+        return f"{type(self).__name__}({self.tag}, {self.value}, children: {self.children}, {self.props})"
+
 
 
 class LeafNode(HTMLNode):
@@ -29,7 +31,7 @@ class LeafNode(HTMLNode):
         super().__init__(tag=tag, value=value, props=props)
     
     def to_html(self):
-        if not self.value:
+        if self.value is None:
             raise ValueError('(leaf)Node has no value')
         elif not self.tag:
             return self.value
